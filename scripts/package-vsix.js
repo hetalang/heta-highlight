@@ -97,7 +97,7 @@ writeFile(
 `,
 );
 
-childProcess.execFileSync("zip", ["-qr", output, "."], {
+childProcess.execFileSync("zip", ["-Xqr", output, "."], {
   cwd: buildDir,
   stdio: "inherit",
 });
