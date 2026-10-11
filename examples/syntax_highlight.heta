@@ -1,0 +1,29 @@
+/*
+    CELL DYNAMICS
+*/
+EC50_proe   @Const {units: kcell/L} = 4e8;
+EC50_pros   @Const {units: kcell/L} = 3e7;
+HSC_bm_base @Const {units: kcell/L} = 1428000;
+exp_cd34    @Const {units: UL} = 1; // in vitro experiment
+kbase_pro   @Const {units: 1/h} = .009;
+EC50_pro_cbdca @Const {units: uM} = 1;
+DoseRate @Const {units: IU*h} = 1;
+AmountTime @Const {units: pmole*h} = 1;
+#importNS;
+expCD34 @TimeSwitcher [expCD34]= 1;
+
+SCF_bm  @Species .= 65;
+SCF_pl  @Species .= 32;
+SCF_pl_corr @Record {units: pM} := SCF_pl - SCF_pl_base;
+SCF_pl_pg_mL@Record {units: ng/L, output:true} := SCF_pl * Mr_scf / kilo;
+
+namespace one begin
+  include "simple.heta" type heta with {a: aaa, b: 1}
+
+  V_dif_hsc_mpp_bm @Reaction := Vol_bm * HSC_bm * k_dif_bm;
+  V_dif_hsc_mpp_bm {actors: HSC_bm => MPP_bm, units: kcell/h} 'Differentiation rate';
+  v_pol_O_EC {actors: 4*t_EC = O_EC + 4*Om_EC, units: umole/h};
+end
+
+ModelNote @Record '''Documentation note
+with several lines.''';

@@ -1,0 +1,189 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "Heta",
+  "scopeName": "source.heta",
+  "patterns": [
+    {
+      "include": "#comments"
+    },
+    {
+      "include": "#notes"
+    },
+    {
+      "include": "#units"
+    },
+    {
+      "include": "#strings"
+    },
+    {
+      "include": "#classes"
+    },
+    {
+      "include": "#actions"
+    },
+    {
+      "include": "#keywords"
+    },
+    {
+      "include": "#properties"
+    },
+    {
+      "include": "#constants"
+    },
+    {
+      "include": "#numbers"
+    },
+    {
+      "include": "#operators"
+    },
+    {
+      "include": "#punctuation"
+    }
+  ],
+  "repository": {
+    "actions": {
+      "patterns": [
+        {
+          "match": "#[A-Za-z_][A-Za-z0-9_]*",
+          "name": "keyword.control.action.heta"
+        }
+      ]
+    },
+    "classes": {
+      "patterns": [
+        {
+          "match": "@[A-Za-z_][A-Za-z0-9_]*",
+          "name": "entity.name.type.class.heta"
+        }
+      ]
+    },
+    "comments": {
+      "patterns": [
+        {
+          "begin": "/\\*",
+          "end": "\\*/",
+          "name": "comment.block.heta"
+        },
+        {
+          "match": "//.*$",
+          "name": "comment.line.double-slash.heta"
+        }
+      ]
+    },
+    "constants": {
+      "patterns": [
+        {
+          "match": "\\b(?:true|false|null)\\b",
+          "name": "constant.language.heta"
+        },
+        {
+          "match": "\\b(?:Infinity|NaN|pi|e)\\b",
+          "name": "constant.language.math.heta"
+        }
+      ]
+    },
+    "keywords": {
+      "patterns": [
+        {
+          "match": "\\b(?:include|type|with|namespace|abstract|concrete|begin|end|block)\\b",
+          "name": "keyword.control.heta"
+        }
+      ]
+    },
+    "notes": {
+      "patterns": [
+        {
+          "begin": "'''",
+          "end": "'''",
+          "name": "string.quoted.single.heta"
+        }
+      ]
+    },
+    "numbers": {
+      "patterns": [
+        {
+          "match": "(?<![A-Za-z0-9_])(?:\\d+\\.\\d*|\\.\\d+|\\d+)(?:[eE][-+]?\\d+)?(?![A-Za-z0-9_])",
+          "name": "constant.numeric.heta"
+        }
+      ]
+    },
+    "operators": {
+      "patterns": [
+        {
+          "match": "\\[[A-Za-z_][A-Za-z0-9_]*\\]=",
+          "name": "keyword.operator.assignment.switch.heta"
+        },
+        {
+          "match": "<=>|=>|:=|\\.=|`=|==|!=|<=|>=|&&|\\|\\||\\b(?:and|or)\\b|[+\\-*/^%<>=!]",
+          "name": "keyword.operator.heta"
+        }
+      ]
+    },
+    "properties": {
+      "patterns": [
+        {
+          "match": "\\b(?:units|output|compartment|isAmount|actors|modifiers|slope)\\b(?=\\s*:(?![=]))",
+          "name": "support.type.property-name.special.heta"
+        },
+        {
+          "match": "\\b[A-Za-z_][A-Za-z0-9_]*\\b(?=\\s*:(?![=]))",
+          "name": "support.type.property-name.heta"
+        }
+      ]
+    },
+    "punctuation": {
+      "patterns": [
+        {
+          "match": "[{}\\[\\]()]",
+          "name": "punctuation.section.brackets.heta"
+        },
+        {
+          "match": "::|[,;:]",
+          "name": "punctuation.separator.heta"
+        }
+      ]
+    },
+    "strings": {
+      "patterns": [
+        {
+          "begin": "\"",
+          "end": "\"",
+          "name": "string.quoted.double.heta",
+          "patterns": [
+            {
+              "match": "\\\\.",
+              "name": "constant.character.escape.heta"
+            }
+          ]
+        },
+        {
+          "match": "'(?:[^'\\\\]|\\\\.)*'",
+          "name": "string.quoted.single.heta"
+        }
+      ]
+    },
+    "units": {
+      "patterns": [
+        {
+          "begin": "\\b(units)(\\s*:\\s*)",
+          "beginCaptures": {
+            "1": {
+              "name": "support.type.property-name.special.heta"
+            },
+            "2": {
+              "name": "punctuation.separator.key-value.heta"
+            }
+          },
+          "end": "(?=,|})",
+          "name": "meta.units.heta",
+          "patterns": [
+            {
+              "match": "[^,}\\s][^,}]*",
+              "name": "string.other.unit.heta"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

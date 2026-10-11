@@ -1,0 +1,68 @@
+{
+  "name": "heta-highlight",
+  "displayName": "Heta Highlight",
+  "description": "Syntax highlighting for Heta model files.",
+  "version": "0.1.16",
+  "publisher": "step-by-step",
+  "author": "step-by-step",
+  "sponsor": {
+    "name": "InSysBio"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hetalang/heta-highlight.git"
+  },
+  "license": "MIT",
+  "icon": "images/logo.png",
+  "main": "./extension.js",
+  "activationEvents": [
+    "onLanguage:heta"
+  ],
+  "scripts": {
+    "package": "node scripts/package-vsix.js"
+  },
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "keywords": [
+    "heta",
+    "systems biology",
+    "qsp",
+    "insysbio",
+    "syntax highlighting"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "heta",
+        "aliases": [
+          "Heta",
+          "heta"
+        ],
+        "extensions": [
+          ".heta"
+        ],
+        "icon": {
+          "light": "./images/heta-file-icon.png",
+          "dark": "./images/heta-file-icon.png"
+        },
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "heta",
+        "scopeName": "source.heta",
+        "path": "./syntaxes/heta.tmLanguage.json"
+      }
+    ],
+    "configurationDefaults": {
+      "[heta]": {
+        "editor.semanticHighlighting.enabled": true
+      }
+    }
+  }
+}
